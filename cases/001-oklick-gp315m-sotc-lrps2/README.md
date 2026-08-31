@@ -2,11 +2,14 @@
 
 **Дата:** 2026-09  
 **Платформа игры:** PS2  
-**Эмуляция:** RetroArch + ядро LRPS2 (`pcsx2_libretro`)  
+**Эмуляция:** RetroArch (~1.22) + ядро LRPS2 (`pcsx2_libretro`)  
 **Геймпад:** Oklick GP-315M (клон Twin Shock / DragonRise, DInput)  
 **Обёртка:** XOutput + ViGEmBus → виртуальный Xbox 360  
 **Скрытие сырого пада:** HidHide  
 **Итог:** играет нормально (бег, камера, widescreen)
+
+**Машина:** i5-12400F, RTX 5060 Ti, 32 GB, Win11, 1080p@144 — см. [hardware/lab-pc.md](../../hardware/lab-pc.md).  
+На этом железе 3× native + widescreen для SotC — без упирания в FPS; почти все боли кейса были в **вводе**, не в производительности.
 
 ---
 
