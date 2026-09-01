@@ -13,7 +13,7 @@ Retro gaming on PC rarely has a single “make it work” button. Problems stack
 3. XOutput / ViGEm / x360ce
 4. Steam Input
 5. RetroArch joypad driver + autoconfig
-6. core options (PCSX2/LRPS2 analog mode, axis scale, invert)
+6. core options (PCSX2/LRPS2 analog mode, axis scale, invert; Dolphin content `.cfg`, GC triggers)
 7. the game itself (run threshold, R1 crouch, in-game 16:9)
 
 This repo records **symptoms → root cause → fix**, without personal paths or game dumps.
@@ -31,6 +31,7 @@ Details: [`hardware/lab-pc.md`](hardware/lab-pc.md).
 | # | Case | Stack | Status |
 |---|------|-------|--------|
 | [001](cases/001-oklick-gp315m-sotc-lrps2/) | Oklick GP-315M + Shadow of the Colossus | XOutput, HidHide, RetroArch LRPS2 | fixed |
+| [002](cases/002-oklick-gp315m-wind-waker-dolphin/) | Oklick GP-315M + The Wind Waker | XOutput, HidHide, RetroArch Dolphin | fixed |
 
 New case template: [`cases/_TEMPLATE.md`](cases/_TEMPLATE.md).
 

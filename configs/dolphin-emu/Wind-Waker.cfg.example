@@ -1,0 +1,64 @@
+# Example content config for The Legend of Zelda: The Wind Waker (GameCube)
+# Copy to: <RetroArch>/config/dolphin-emu/<YOUR_ISO_BASENAME>.cfg
+# RetroArch names this file after the loaded content (e.g. MyGame.iso -> MyGame.iso.cfg)
+
+input_joypad_driver = "xinput"
+input_autodetect_enable = "true"
+input_player1_joypad_index = "0"
+input_player1_analog_dpad_mode = "0"
+
+# Face buttons (Xbox -> RetroPad -> GameCube)
+input_player1_b_btn = "0"
+input_player1_a_btn = "1"
+input_player1_y_btn = "2"
+input_player1_x_btn = "3"
+input_player1_l_btn = "4"
+input_player1_r_btn = "5"
+input_player1_select_btn = "7"
+input_player1_start_btn = "6"
+input_player1_l3_btn = "8"
+input_player1_r3_btn = "9"
+
+# GC L/R — digital only (LB/RB). Do NOT map LT/RT axes here on Oklick:
+# Dolphin treats them as analog L/R; phantom half-L = Link walks slowly forward/back.
+input_player1_l2 = "nul"
+input_player1_l2_axis = "nul"
+input_player1_l2_btn = "nul"
+input_player1_r2 = "nul"
+input_player1_r2_axis = "nul"
+input_player1_r2_btn = "nul"
+
+# Left stick — movement (tune Y +/- if forward/back inverted on your pad)
+input_player1_l_x_plus_axis = "+0"
+input_player1_l_x_minus_axis = "-0"
+input_player1_l_y_plus_axis = "+1"
+input_player1_l_y_minus_axis = "-1"
+
+# Oklick often reports ~50% stick travel; WW uses tilt for walk vs run.
+input_analog_sensitivity = "2.000000"
+
+# Right stick — C-stick camera (X inverted on this pad)
+input_player1_r_x_plus_axis = "-2"
+input_player1_r_x_minus_axis = "+2"
+input_player1_r_y_plus_axis = "-3"
+input_player1_r_y_minus_axis = "+3"
+
+# D-pad
+input_player1_up_btn = "h0up"
+input_player1_down_btn = "h0down"
+input_player1_left_btn = "h0left"
+input_player1_right_btn = "h0right"
+
+# Null keyboard binds from global retroarch.cfg for this game
+input_player1_a = "nul"
+input_player1_b = "nul"
+input_player1_x = "nul"
+input_player1_y = "nul"
+input_player1_l = "nul"
+input_player1_r = "nul"
+input_player1_up = "nul"
+input_player1_down = "nul"
+input_player1_left = "nul"
+input_player1_right = "nul"
+input_player1_start = "nul"
+input_player1_select = "nul"

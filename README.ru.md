@@ -13,7 +13,7 @@
 3. XOutput / ViGEm / x360ce
 4. Steam Input
 5. RetroArch joypad driver + autoconfig
-6. опции ядра (PCSX2/LRPS2 analog mode, axis scale, invert)
+6. опции ядра (PCSX2/LRPS2 analog mode, axis scale, invert; Dolphin content `.cfg`, триггеры GC)
 7. сама игра (порог бега, crouch на R1, in-game 16:9)
 
 Этот репозиторий фиксирует **симптомы → причину → фикс**, без личных путей и дампов игр.
@@ -31,6 +31,7 @@
 | # | Кейс | Стек | Статус |
 |---|------|------|--------|
 | [001](cases/001-oklick-gp315m-sotc-lrps2/) | Oklick GP-315M + Shadow of the Colossus | XOutput, HidHide, RetroArch LRPS2 | решено |
+| [002](cases/002-oklick-gp315m-wind-waker-dolphin/) | Oklick GP-315M + The Wind Waker | XOutput, HidHide, RetroArch Dolphin | решено |
 
 Шаблон нового кейса: [`cases/_TEMPLATE.ru.md`](cases/_TEMPLATE.ru.md).
 
