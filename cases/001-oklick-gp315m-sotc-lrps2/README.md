@@ -1,40 +1,42 @@
-# Кейс 001 — Oklick GP-315M + Shadow of the Colossus (LRPS2)
+# Case 001 — Oklick GP-315M + Shadow of the Colossus (LRPS2)
 
-**Дата:** 2026-09  
-**Платформа игры:** PS2  
-**Эмуляция:** RetroArch (~1.22) + ядро LRPS2 (`pcsx2_libretro`)  
-**Геймпад:** Oklick GP-315M (клон Twin Shock / DragonRise, DInput)  
-**Обёртка:** XOutput + ViGEmBus → виртуальный Xbox 360  
-**Скрытие сырого пада:** HidHide  
-**Итог:** играет нормально (бег, камера, widescreen)
+**Date:** 2026-09  
+**Game platform:** PS2  
+**Emulation:** RetroArch (~1.22) + LRPS2 core (`pcsx2_libretro`)  
+**Gamepad:** Oklick GP-315M (Twin Shock / DragonRise clone, DInput)  
+**Wrapper:** XOutput + ViGEmBus → virtual Xbox 360  
+**Raw pad hidden with:** HidHide  
+**Result:** plays correctly (run, camera, widescreen)
 
-**Машина:** i5-12400F, RTX 5060 Ti, 32 GB, Win11, 1080p@144 — см. [hardware/lab-pc.md](../../hardware/lab-pc.md).  
-На этом железе 3× native + widescreen для SotC — без упирания в FPS; почти все боли кейса были в **вводе**, не в производительности.
+**Machine:** i5-12400F, RTX 5060 Ti, 32 GB, Win11, 1080p@144 — see [hardware/lab-pc.md](../../hardware/lab-pc.md).  
+On this hardware, 3× native + widescreen for SotC had no FPS issues; almost all pain in this case was **input**, not performance.
 
----
-
-## Симптомы (как это выглядело)
-
-Проблемы шли волнами — чинили одно, всплывало следующее.
-
-| # | Симптом | Ощущение в игре |
-|---|---------|-----------------|
-| A | «Ничего не ходит / камера мёртвая» | правый стик будто не существует |
-| B | После запуска из Steam снова сломано | оси/кнопки плывут или дублируются |
-| C | Wander «крадётся и тупит» | левый стик в край — всё равно шаг, не бег |
-| D | Зеркальные оси | вниз = вперёд; вправо на правом стике = камера влево |
-| E | Чёрные полосы / шов по краю при 16:9 | картинка не на весь экран или артефакт справа |
-
-Важно: это **не одна** баговая настройка. Это цепочка.
+**Русский:** [README.ru.md](README.ru.md)
 
 ---
 
-## Железо и софт (обезличено)
+## Symptoms (what it looked like)
+
+Problems came in waves — fix one thing, the next broke.
+
+| # | Symptom | In-game feel |
+|---|---------|--------------|
+| A | “Nothing moves / camera dead” | right stick seems to not exist |
+| B | Broken again after Steam launch | axes/buttons drift or duplicate |
+| C | Wander “sneaks and feels sluggish” | left stick at full tilt = walk, not run |
+| D | Mirrored axes | down = forward; right on right stick = camera left |
+| E | Black bars / edge seam at 16:9 | picture not full screen or artifact on the right |
+
+Important: this is **not one** bad setting. It is a chain.
+
+---
+
+## Hardware and software (sanitized)
 
 ```
 [Oklick GP-315M USB]
         |
-        +--(сырой DInput)-- Windows / Steam / RetroArch   ← ХОТИМ СПРЯТАТЬ
+        +--(raw DInput)-- Windows / Steam / RetroArch   ← HIDE THIS
         |
         v
    [XOutput]  --maps-->  [ViGEm]  -->  "Controller (XBOX 360 For Windows)"
@@ -46,69 +48,69 @@
                                          LRPS2 / SotC
 ```
 
-### Mode LED на Oklick (критично)
+### Mode LED on Oklick (critical)
 
-На этих падах Mode — **аппаратный**, прошивки «сделать навсегда Xbox» нет.
+On these pads, Mode is **hardware** — there is no firmware to “make it Xbox forever.”
 
-| LED | Режим | Правый стик |
-|-----|--------|-------------|
-| **Красный** | analog | оси RX/RY → камера |
-| **Зелёный** | digital | правый стик эмулирует face-кнопки 1–4 |
+| LED | Mode | Right stick |
+|-----|------|-------------|
+| **Red** | analog | RX/RY axes → camera |
+| **Green** | digital | right stick emulates face buttons 1–4 |
 
-Если LED зелёный — камера «тупит», дубли кнопок, диагностика врёт. Играть только на **красном**.
+If LED is green — camera “lags,” button duplicates, diagnostics lie. Play only on **red**.
 
-Community-мап осей (DarkScorpion / клоны Twin Shock):
+Community axis map (DarkScorpion / Twin Shock clones):
 
-- Left: X / Y (Y часто инвертирован)
-- Right: Z / Rz (в XOutput это обычно отдельные InputType; Y инверт)
+- Left: X / Y (Y often inverted)
+- Right: Z / Rz (in XOutput these are usually separate InputTypes; Y inverted)
 
-Референс: [DarkScorpion/Oklick_GP-315m](https://github.com/DarkScorpion/Oklick_GP-315m)
+Reference: [DarkScorpion/Oklick_GP-315m](https://github.com/DarkScorpion/Oklick_GP-315m)
 
 ---
 
-## Корневые причины по слоям
+## Root causes by layer
 
-### 1) Два контроллера одновременно
+### 1) Two controllers at once
 
-Windows видит и сырой Oklick, и виртуальный Xbox. RetroArch/игра могут читать не тот девайс или мешать оси.
+Windows sees both raw Oklick and virtual Xbox. RetroArch/game may read the wrong device or mix axes.
 
-**Фикс:** HidHide — cloak ON, спрятать сырой Oklick (`VID_04D9` / иногда `VID_11FF` у ревизий), whitelist только `XOutput.exe`.
+**Fix:** HidHide — cloak ON, hide raw Oklick (`VID_04D9` / sometimes `VID_11FF` on revisions), whitelist only `XOutput.exe`.
 
 ### 2) Steam Input
 
-Steam для RetroArch периодически сбрасывает политику контроллера и накладывает свою раскладку поверх XInput.
+Steam periodically resets controller policy for RetroArch and layers its own mapping on top of XInput.
 
-**Фикс:**
+**Fix:**
 
 - Steam → RetroArch → Controller → **Disable Steam Input** / Force Off  
-- или запуск RetroArch **мимо Steam** (см. `scripts/launch-game-without-steam.bat`)
+- or launch RetroArch **outside Steam** (see `scripts/launch-game-without-steam.bat`)
 
-### 3) Analog mode DualShock в LRPS2
+### 3) DualShock analog mode in LRPS2
 
-В override ядра стояло:
+Core override had:
 
 ```ini
 pcsx2_analog_mode1 = "disabled"
 ```
 
-Без analog mode многие PS2-игры (включая SotC) плохо/никак не принимают стики.
+Without analog mode, many PS2 games (including SotC) poorly or never accept sticks.
 
-**Фикс:**
+**Fix:**
 
 ```ini
 pcsx2_analog_mode1 = "enabled"
 ```
 
-### 4) Неполный диапазон стика → «крадётся»
+### 4) Incomplete stick range → “sneaking”
 
-Замер через XInput показал примерно **±16383** при упоре вместо **±32767** (~50% хода).
+XInput measurement showed roughly **±16383** at full tilt instead of **±32767** (~50% travel).
 
-SotC (и ряд других PS2) для **бега** требует почти полный ход. Половина = walk/creep.
+SotC (and some other PS2 titles) require near-full stick deflection to **run**. Half travel = walk/creep.
 
-Это известный класс проблем PCSX2: circular sticks / неполный range / диагонали → walk вместо run  
-(см. [PCSX2#6230](https://github.com/PCSX2/pcsx2/issues/6230), треды про Analog Sensitivity / Axis Scale).
+Known PCSX2 class of issues: circular sticks / incomplete range / diagonals → walk instead of run  
+(see [PCSX2#6230](https://github.com/PCSX2/pcsx2/issues/6230), threads on Analog Sensitivity / Axis Scale).
 
-**Фикс в LRPS2 override:**
+**Fix in LRPS2 override:**
 
 ```ini
 pcsx2_axis_scale1 = "200%"
@@ -117,85 +119,85 @@ pcsx2_axis_deadzone1 = "0%"
 pcsx2_axis_deadzone2 = "0%"
 ```
 
-Плюс deadzone в XOutput на LX/LY/RX/RY = `0`.
+Plus deadzone in XOutput on LX/LY/RX/RY = `0`.
 
-Если после 200% всё ещё walk — перекалибровать стики в XOutput → Configure (поводить до упора), проверить Mode = красный, R1 не зажат (в SotC R1 = crouch/grab).
+If still walking after 200% — recalibrate sticks in XOutput → Configure (move to full deflection), check Mode = red, R1 not held (in SotC R1 = crouch/grab).
 
-### 5) Инверсия осей
+### 5) Axis inversion
 
-После того как диапазон «заиграл»:
+After range was fixed:
 
-- левый стик: вниз = вперёд, вверх = назад  
-- правый стик: вправо = камера влево (и наоборот)
+- left stick: down = forward, up = backward  
+- right stick: right = camera left (and vice versa)
 
-**Фикс только для этой игры (`.opt`):**
+**Fix for this game only (`.opt`):**
 
 ```ini
 pcsx2_invert_left_stick1 = "y_axis"
 pcsx2_invert_right_stick1 = "x_axis"
 ```
 
-Значения ядра: `disabled` | `x_axis` | `y_axis` | `all`.
+Core values: `disabled` | `x_axis` | `y_axis` | `all`.
 
-Альтернатива — крутить Min/Max в XOutput или знаки осей в RetroArch binds; для одной игры удобнее invert в `.opt`.
+Alternative — swap Min/Max in XOutput or axis signs in RetroArch binds; for one game, invert in `.opt` is simpler.
 
-### 6) Autoconfig Xbox 360 / Wireless PID
+### 6) Xbox 360 autoconfig / Wireless PID
 
-ViGEm представляется как wired Xbox 360. Иногда RetroArch подхватывает профиль **Wireless** с другим `input_product_id` и кривыми binds.
+ViGEm presents as wired Xbox 360. RetroArch sometimes picks the **Wireless** profile with a different `input_product_id` and wrong binds.
 
-**Фикс:** явный autoconfig с `input_product_id = "654"` (wired) — см. `configs/retroarch/`.
+**Fix:** explicit autoconfig with `input_product_id = "654"` (wired) — see `configs/retroarch/`.
 
-### 7) Widescreen / шов по краю
+### 7) Widescreen / edge seam
 
-Отдельно от пада:
+Separate from the pad:
 
 - in-game: Options → Screen → **16:9**
-- ядро: `pcsx2_widescreen_hint = "enabled (16:9)"`
-- RetroArch: aspect ~16:9; при upscale у SotC известны швы — community workaround Zoom ≈ **102.6%** (через custom viewport)
+- core: `pcsx2_widescreen_hint = "enabled (16:9)"`
+- RetroArch: aspect ~16:9; SotC upscale has known seams — community workaround Zoom ≈ **102.6%** (via custom viewport)
 
-BIOS в примере не прилагаем; нужен совместимый дамп (часто USA). Файлы BIOS/ISO в репозиторий не класть.
-
----
-
-## Рабочий чеклист перед сессией
-
-1. LED геймпада **красный**
-2. XOutput запущен, профиль Oklick → **Start**
-3. HidHide cloak ON, сырой пад скрыт
-4. Steam Input для RetroArch выключен **или** запуск без Steam
-5. В игре Screen → 16:9
-6. Если «крадётся» — проверить R1 и axis scale
+BIOS not included in examples; you need a compatible dump (often USA). Do not commit BIOS/ISO files to the repo.
 
 ---
 
-## Файлы в этом кейсе
+## Pre-session checklist
 
-| Путь | Зачем |
-|------|--------|
+1. Pad LED **red**
+2. XOutput running, Oklick profile → **Start**
+3. HidHide cloak ON, raw pad hidden
+4. Steam Input for RetroArch off **or** launch without Steam
+5. In-game Screen → 16:9
+6. If “sneaking” — check R1 and axis scale
+
+---
+
+## Files in this case
+
+| Path | Purpose |
+|------|---------|
 | [`configs/lrps2/Shadow of the Colossus.opt.example`](../../configs/lrps2/Shadow%20of%20the%20Colossus.opt.example) | analog + scale 200% + invert |
 | [`configs/lrps2/Shadow of the Colossus.cfg.example`](../../configs/lrps2/Shadow%20of%20the%20Colossus.cfg.example) | aspect / viewport / binds |
-| [`configs/retroarch/Controller (XBOX 360 For Windows) XOutput.cfg`](../../configs/retroarch/Controller%20(XBOX%20360%20For%20Windows)%20XOutput.cfg) | autoconfig ViGEm |
-| [`configs/xoutput/stick-mapping.notes.md`](../../configs/xoutput/stick-mapping.notes.md) | как мапить оси |
-| [`scripts/`](../../scripts/) | запуск без Steam, CaptureSteps, PadTest |
-| [`cheatsheets/oklick-gp315m.md`](../../cheatsheets/oklick-gp315m.md) | короткая шпаргалка |
+| [`configs/retroarch/Controller (XBOX 360 For Windows) XOutput.cfg`](../../configs/retroarch/Controller%20(XBOX%20360%20For%20Windows)%20XOutput.cfg) | ViGEm autoconfig |
+| [`configs/xoutput/stick-mapping.notes.md`](../../configs/xoutput/stick-mapping.notes.md) | how to map axes |
+| [`scripts/`](../../scripts/) | launch without Steam, CaptureSteps, PadTest |
+| [`cheatsheets/oklick-gp315m.md`](../../cheatsheets/oklick-gp315m.md) | short cheat sheet |
 
 ---
 
-## Как диагностировали (метод)
+## How we diagnosed (method)
 
-Не гадать JSON вслепую:
+Do not guess JSON blindly:
 
-1. `PadTest` — живой поток LX/LY/RX/RY 10 сек  
-2. `CaptureSteps` — пошаговый лог «сделай действие → что увидел XInput»  
-3. Сравнить max |оси| с 32767 → понять нужен ли axis scale  
-4. Красный vs зелёный Mode — отдельный прогон CaptureSteps
+1. `PadTest` — live LX/LY/RX/RY stream for 10 sec  
+2. `CaptureSteps` — step log “do action → what XInput saw”  
+3. Compare max |axis| to 32767 → decide if axis scale is needed  
+4. Red vs green Mode — separate CaptureSteps run
 
-Ожидание при упоре стика: величины порядка **20000–32767**. Если стабильно ~16000 — SotC будет walk без scale.
+Expected at full stick tilt: values around **20000–32767**. If stable ~16000 — SotC will walk without scale.
 
 ---
 
-## Вывод одной фразой
+## One-line takeaway
 
-Oklick остаётся DInput-клоном навсегда: **Mode красный + XOutput + HidHide + без Steam Input + analog mode + добить sensitivity/invert под конкретную игру**.
+Oklick stays a DInput clone forever: **red Mode + XOutput + HidHide + no Steam Input + analog mode + tune sensitivity/invert per game**.
 
-Долгосрочно для «просто работает» проще пад с родным XInput (Xbox / 8BitDo в Xbox mode). Этот кейс — про то, как выжать клон.
+Long term, a native XInput pad (Xbox / 8BitDo in Xbox mode) is simpler. This case is about squeezing a clone.

@@ -1,7 +1,7 @@
-# Пример content override: Shadow of the Colossus
-# Скопируй в: <RetroArch>/config/LRPS2/Shadow of the Colossus.cfg
-# Viewport подогнан под ~1080p fullscreen + лёгкий zoom (~102.6%) против шва;
-# на другом разрешении пересчитай custom_viewport_*.
+# Example content override: Shadow of the Colossus
+# Copy to: <RetroArch>/config/LRPS2/Shadow of the Colossus.cfg
+# Viewport tuned for ~1080p fullscreen + slight zoom (~102.6%) against edge seam;
+# recalculate custom_viewport_* for other resolutions.
 
 aspect_ratio_index = "23"
 custom_viewport_width = "1970"

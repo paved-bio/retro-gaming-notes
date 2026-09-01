@@ -1,6 +1,6 @@
-# Пример core options override для Shadow of the Colossus (LRPS2)
-# Скопируй в: <RetroArch>/config/LRPS2/Shadow of the Colossus.opt
-# BIOS-файл укажи свой (файл в репозиторий не кладём).
+# Example core options override for Shadow of the Colossus (LRPS2)
+# Copy to: <RetroArch>/config/LRPS2/Shadow of the Colossus.opt
+# Set your own BIOS filename (do not commit BIOS files to the repo).
 
 pcsx2_analog_mode1 = "enabled"
 pcsx2_axis_deadzone1 = "0%"
@@ -17,4 +17,4 @@ pcsx2_nointerlacing_hint = "enabled"
 pcsx2_upscale_multiplier = "3x Native (~1080p)"
 pcsx2_widescreen_hint = "enabled (16:9)"
 
-# Остальные опции ядра можно оставить дефолтными или дописать под машину.
+# Other core options can stay at defaults or be tuned for your machine.

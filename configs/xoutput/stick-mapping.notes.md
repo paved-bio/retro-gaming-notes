@@ -1,19 +1,21 @@
-# XOutput — заметки по маппингу стиков (Oklick / Twin Shock клоны)
+# XOutput — stick mapping notes (Oklick / Twin Shock clones)
 
-Не храним полный `settings.json` с GUID устройств — они уникальны на каждой машине.
+**Русский:** [stick-mapping.notes.ru.md](stick-mapping.notes.ru.md)
 
-## Рекомендуемый способ
+Do not store full `settings.json` with device GUIDs — they are unique per machine.
 
-1. Mode LED = красный  
-2. XOutput → Edit профиля  
-3. Для **RX**: Configure → правый стик влево-вправо до упора  
-4. Для **RY**: Configure → правый стик вверх-вниз  
-5. То же для LX/LY левым стиком  
+## Recommended approach
+
+1. Mode LED = red  
+2. XOutput → Edit profile  
+3. For **RX**: Configure → move right stick left-right to full deflection  
+4. For **RY**: Configure → move right stick up-down  
+5. Same for LX/LY with left stick  
 6. Save → Start  
 
-## Инверсия оси в XOutput
+## Axis inversion in XOutput
 
-Если ось зеркальная, поменяй местами `MinValue` и `MaxValue` у маппера:
+If an axis is mirrored, swap `MinValue` and `MaxValue` on the mapper:
 
 ```json
 "LY": {
@@ -29,21 +31,21 @@
 }
 ```
 
-Для «крадётся в игре» поставь `Deadzone: 0.0` на LX/LY/RX/RY.
+For “sneaking in game,” set `Deadzone: 0.0` on LX/LY/RX/RY.
 
-## Community-ориентир (DarkScorpion ini → смысл)
+## Community reference (DarkScorpion ini → meaning)
 
-| Xbox ось | Типично на клоне |
-|----------|------------------|
+| Xbox axis | Typical on clone |
+|-----------|------------------|
 | LX | Axis X |
 | LY | Axis Y (invert) |
 | RX | Axis Z |
 | RY | Axis Rz (invert) |
 
-Номера InputType в XOutput зависят от версии/драйвера — Configure надёжнее хардкода.
+InputType numbers in XOutput depend on version/driver — Configure is more reliable than hardcoding.
 
 ## HidHide
 
 - Cloak: ON  
-- Hidden devices: сырой Oklick  
-- Whitelisted applications: только `XOutput.exe` (полный путь на твоей машине)
+- Hidden devices: raw Oklick  
+- Whitelisted applications: only `XOutput.exe` (full path on your machine)

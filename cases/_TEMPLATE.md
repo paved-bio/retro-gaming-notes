@@ -1,46 +1,48 @@
-# Шаблон кейса
+# Case template
 
-Скопируй папку `cases/NNN-short-slug/` и заполни.
+Copy folder `cases/NNN-short-slug/` and fill in.
 
-## Мета
+**Русский:** [_TEMPLATE.ru.md](_TEMPLATE.ru.md)
 
-- **Дата:**
-- **Игра / система:**
-- **Эмулятор / ядро:**
-- **Геймпад / обёртка:**
-- **Статус:** open / workaround / fixed
+## Meta
 
-## Симптомы
+- **Date:**
+- **Game / system:**
+- **Emulator / core:**
+- **Gamepad / wrapper:**
+- **Status:** open / workaround / fixed
+
+## Symptoms
 
 1.
 2.
 
-## Окружение (без личных путей)
+## Environment (no personal paths)
 
 - OS:
 - CPU / GPU / RAM:
-- Монитор / разрешение:
-- Стек ввода:
-- Ссылка на [lab-pc](../hardware/lab-pc.md), если снималось на той же машине:
+- Monitor / resolution:
+- Input stack:
+- Link to [lab-pc](../hardware/lab-pc.md) if tested on the same machine:
 
-## Что пробовали
-
--
-
-## Корневая причина
+## What we tried
 
 -
 
-## Фикс (пошагово)
+## Root cause
+
+-
+
+## Fix (step by step)
 
 1.
 
-## Артефакты
+## Artifacts
 
-- конфиги:
-- скрипты:
-- ссылки / issues:
+- configs:
+- scripts:
+- links / issues:
 
-## Чеклист «не сломалось снова»
+## “Did not break again” checklist
 
 -

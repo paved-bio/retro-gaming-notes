@@ -1,32 +1,34 @@
-# Oklick GP-315M — шпаргалка
+# Oklick GP-315M — cheat sheet
 
-## Индикатор Mode
+**Русский:** [oklick-gp315m.ru.md](oklick-gp315m.ru.md)
 
-| LED | Играть? | Правый стик |
-|-----|---------|-------------|
-| Красный | да | оси (камера) |
-| Зелёный | нет | face-кнопки |
+## Mode indicator
 
-## Стек
+| LED | Play? | Right stick |
+|-----|-------|-------------|
+| Red | yes | axes (camera) |
+| Green | no | face buttons |
 
-1. ViGEmBus установлен  
-2. XOutput: профиль Oklick → Start  
-3. HidHide: скрыть сырой Oklick, whitelist `XOutput.exe`  
-4. Steam Input для эмулятора: Disable / запуск без Steam  
+## Stack
 
-## Если «снова ничего не работает»
+1. ViGEmBus installed  
+2. XOutput: Oklick profile → Start  
+3. HidHide: hide raw Oklick, whitelist `XOutput.exe`  
+4. Steam Input for emulator: Disable / launch without Steam  
 
-1. LED красный?  
+## If “nothing works again”
+
+1. LED red?  
 2. XOutput Start?  
-3. Не через Steam?  
-4. В joy.cpl один Xbox 360, сырого Oklick не видно?  
+3. Not via Steam?  
+4. In joy.cpl only one Xbox 360, raw Oklick not visible?  
 
-## Оси (community)
+## Axes (community)
 
-Left X/Y, Right Z/Rz; Y часто инвертировать.  
-Лучше: XOutput → Edit → RX/RY → **Configure** и поводить стиком, чем руками угадывать InputType.
+Left X/Y, Right Z/Rz; Y often inverted.  
+Better: XOutput → Edit → RX/RY → **Configure** and move the stick than guessing InputType by hand.
 
-## SotC / LRPS2 (частые тумблеры)
+## SotC / LRPS2 (common toggles)
 
 ```ini
 pcsx2_analog_mode1 = "enabled"
@@ -34,9 +36,9 @@ pcsx2_axis_scale1 = "200%"
 pcsx2_axis_scale2 = "200%"
 pcsx2_axis_deadzone1 = "0%"
 pcsx2_axis_deadzone2 = "0%"
-pcsx2_invert_left_stick1 = "y_axis"   ; если вверх/вниз зеркало
-pcsx2_invert_right_stick1 = "x_axis"  ; если влево/вправо зеркало
+pcsx2_invert_left_stick1 = "y_axis"   ; if up/down mirrored
+pcsx2_invert_right_stick1 = "x_axis"  ; if left/right mirrored
 pcsx2_widescreen_hint = "enabled (16:9)"
 ```
 
-В игре: Options → Screen → 16:9. R1 = crouch — не путать с «крадётся из‑за стика».
+In-game: Options → Screen → 16:9. R1 = crouch — do not confuse with “sneaking because of stick range.”

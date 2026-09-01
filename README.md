@@ -1,50 +1,52 @@
 # Retro gaming notes
 
-Журнал практических кейсов: дешёвые геймпады, обёртки DInput→XInput, RetroArch / ядра эмуляторов, widescreen-хаки и всё, что ломается между «купил пад» и «нормально играется».
+A practical case log for retro gaming on PC: cheap gamepads, DInput→XInput wrappers, RetroArch / emulator cores, widescreen hacks, and everything that breaks between “I bought a pad” and “it actually plays.”
 
-## Зачем это
+**Русский:** [README.ru.md](README.ru.md)
 
-У ретрогейминга на PC часто нет одной кнопки «сделать хорошо». Проблемы копятся слоями:
+## Why this exists
 
-1. железо геймпада (Mode LED, оси-клоны)
-2. Windows / HidHide / дубли устройств
+Retro gaming on PC rarely has a single “make it work” button. Problems stack in layers:
+
+1. gamepad hardware (Mode LED, clone axis layouts)
+2. Windows / HidHide / duplicate devices
 3. XOutput / ViGEm / x360ce
 4. Steam Input
 5. RetroArch joypad driver + autoconfig
-6. опции ядра (PCSX2/LRPS2 analog mode, axis scale, invert)
-7. сама игра (порог бега, crouch на R1, in-game 16:9)
+6. core options (PCSX2/LRPS2 analog mode, axis scale, invert)
+7. the game itself (run threshold, R1 crouch, in-game 16:9)
 
-Этот репозиторий фиксирует **симптомы → причину → фикс**, без личных путей и дампов игр.
+This repo records **symptoms → root cause → fix**, without personal paths or game dumps.
 
 ## Lab PC
 
-Референсная машина (чтобы понимать, на чём снимались кейсы):
+Reference machine (so you know what hardware the cases were tested on):
 
 **i5-12400F · RTX 5060 Ti · 32 GB RAM · Windows 11 · 1080p 144 Hz · Oklick GP-315M + XOutput/ViGEm/HidHide**
 
-Подробности: [`hardware/lab-pc.md`](hardware/lab-pc.md).
+Details: [`hardware/lab-pc.md`](hardware/lab-pc.md).
 
-## Кейсы
+## Cases
 
-| # | Кейс | Стек | Статус |
-|---|------|------|--------|
-| [001](cases/001-oklick-gp315m-sotc-lrps2/) | Oklick GP-315M + Shadow of the Colossus | XOutput, HidHide, RetroArch LRPS2 | решено |
+| # | Case | Stack | Status |
+|---|------|-------|--------|
+| [001](cases/001-oklick-gp315m-sotc-lrps2/) | Oklick GP-315M + Shadow of the Colossus | XOutput, HidHide, RetroArch LRPS2 | fixed |
 
-Шаблон нового кейса: [`cases/_TEMPLATE.md`](cases/_TEMPLATE.md).
+New case template: [`cases/_TEMPLATE.md`](cases/_TEMPLATE.md).
 
-## Быстрые ссылки
+## Quick links
 
-- [Lab PC / железо](hardware/lab-pc.md)
-- [Шпаргалка Oklick GP-315M](cheatsheets/oklick-gp315m.md)
-- [Скрипты диагностики стиков](scripts/)
-- [Примеры конфигов](configs/)
+- [Lab PC / hardware](hardware/lab-pc.md)
+- [Oklick GP-315M cheat sheet](cheatsheets/oklick-gp315m.md)
+- [Stick diagnostic scripts](scripts/)
+- [Sample configs](configs/)
 
-## Что сюда не кладём
+## What we do not commit
 
-- ISO / ROM / BIOS-файлы
-- абсолютные пути вида `D:\Users\...`
-- Steam Guard / логины / ключи
+- ISO / ROM / BIOS files
+- absolute paths like `D:\Users\...`
+- Steam Guard / logins / keys
 
-## Лицензия
+## License
 
-Тексты и скрипты — на твоё усмотрение при публикации (рекомендуется MIT или CC-BY для заметок). Игры и BIOS — права правообладателей.
+Notes and scripts — your choice when publishing (MIT or CC-BY recommended for docs). Games and BIOS files remain property of their rights holders.

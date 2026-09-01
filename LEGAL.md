@@ -1,6 +1,8 @@
 # Legal / ethical
 
-- Этот репозиторий — заметки по эмуляции и вводу, не склад дампов.
-- ISO/ROM/BIOS сюда не коммитить. Используй копии игр и BIOS, которые тебе разрешены.
-- Названия игр и торговые марки принадлежат правообладателям.
-- XOutput, ViGEm, HidHide, RetroArch, PCSX2 — проекты со своими лицензиями; ссылайся на upstream.
+**Русский:** [LEGAL.ru.md](LEGAL.ru.md)
+
+- This repository is notes on emulation and input — not a dump archive.
+- Do not commit ISO/ROM/BIOS files. Use game copies and BIOS dumps you are allowed to use.
+- Game titles and trademarks belong to their rights holders.
+- XOutput, ViGEm, HidHide, RetroArch, PCSX2 are upstream projects with their own licenses; link to them when referencing.
